@@ -9,7 +9,7 @@
     "jest",
     "yarn",
     "plug'n'play",
-    "pnp"
+    "pnp" 
   ],
   "license": "MIT",
   "scripts": {
