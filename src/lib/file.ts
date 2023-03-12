@@ -6,7 +6,7 @@ import { JsonObject } from './JsonObject'
 import './path'
 
 export type File = string
-export type Folder = {	[name: string]: File | Folder }
+export interface Folder { [name: string]: File | Folder }
 
 export const folder = (f: Folder): Folder => f
 export const file = (text: string | string[] | JsonObject | undefined, tab: number|string='\t'): File => {
