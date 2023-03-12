@@ -36,21 +36,21 @@ md tests\output\logs
   "description": "A TypeScript, ESLint, and Jest project with Yarn Plug'n'Play",
   "author": "Sam Freeman <sam.freeman.55@gmail.com>",
   "keywords": [
-	"typescript",
-	"eslint",
-	"jest",
-	"yarn",
-	"plug'n'play",
-	"pnp"
+	  "typescript",
+	  "eslint",
+	  "jest",
+	  "yarn",
+	  "plug'n'play",
+	  "pnp"
   ],
   "license": "MIT",
   "private": false,
   "scripts": {
-	"test": "jest --no-color 2>tests/output/logs/tests.log",
-	"coverage": "\"tests/output/coverage/lcov-report/index.html\"",
-	"clean": "rimraf build && rimraf tsconfig.tsbuildinfo",
-	"build": "tsc --build --verbose",
-	"re-build": "yarn clean && yarn build"
+	  "test": "jest --no-color 2>tests/output/logs/tests.log",
+	  "coverage": "\"tests/output/coverage/lcov-report/index.html\"",
+	  "clean": "rimraf build && rimraf tsconfig.tsbuildinfo",
+	  "build": "tsc --build --verbose",
+	  "re-build": "yarn clean && yarn build"
   }
 }
 ```
@@ -73,9 +73,14 @@ git init
 
 ## Create `.gitignore`
 ```cmd
-echo .yarn> .gitignore
+echo .yarn/cache> .gitignore
+echo .yarn/sdks>> .gitignore
+echo .yarn/unplugged>> .gitignore
+echo .yarn/build-state.yml>> .gitignore
+echo .yarn/install-state.gz>> .gitignore
+echo .pnp.*>> .gitignore
 echo build>> .gitignore
-echo tests\output>> .gitignore
+echo tests/output>> .gitignore
 ```
 
 ## Create `tsconfig.json`
@@ -155,6 +160,7 @@ echo tests\output>> .gitignore
 ## Create `.eslintignore`
 ```cmd
 echo .yarn> .eslintignore
+echo .pnp.*>> .eslintignore
 echo build>> .eslintignore
 echo tests>> .eslintignore
 ```

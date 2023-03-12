@@ -5,4 +5,4 @@
 .yarn/install-state.gz
 .pnp.*
 build
-tests
+tests/output
