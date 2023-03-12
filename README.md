@@ -61,7 +61,7 @@ md tests\output\logs
 ## Install Dependencies
 ```cmd
 yarn add -D typescript ts-node @types/node
-yarn add -D eslint
+yarn add -D eslint @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
 yarn add -D jest ts-jest @types/jest
 ```
 > You should now have no `node_modules` folder and should have a `.yarn` folder in your project.  You should also see two pnp files - `.pnp.cjs` and `.pnp.loader.mjs`.
@@ -108,7 +108,7 @@ echo tests/output>> .gitignore
 }
 ```
 
-## Create `eslintrc.json`
+## Create `.eslintrc.json`
 ```json
 // .eslintrc.json
 // ---
@@ -289,10 +289,10 @@ yarn re-build
       - tests.log
     - JsonObject.test.ts
 - .eslintignore
+- .eslintrc.json
 - .gitignore
 - .pnp.cjs
 - .pnp.loader.mjs
-- eslintrc.json
 - jest.config.ts
 - package.json
 - README.md
@@ -329,6 +329,8 @@ yarn re-build
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/node": "^18.15.0",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
     "eslint": "^8.36.0",
     "jest": "^29.5.0",
     "ts-jest": "^29.0.5",
