@@ -8,7 +8,7 @@ import './path'
 export type File = string
 export interface Folder { [name: string]: File | Folder }
 
-export const folder = (f: Folder): Folder => f
+export const folder = (f?: Folder): Folder => f ?? {}
 export const file = (text: string | string[] | JsonObject | undefined, tab: number|string='\t'): File => {
 	if (!text)
 		return ''
@@ -94,7 +94,7 @@ String.prototype.readFolder = function(recursive: boolean): string[] {
 String.prototype.createFolder = function(f?: Folder): string {
 	const p = this.valueOf()
 	if (!p.isFolder())
-		fs.mkdirSync(p)
+		fs.mkdirSync(p, { recursive: true })
 	if (!f)
 		return p
 	for (const name in f){
