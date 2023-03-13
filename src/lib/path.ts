@@ -3,6 +3,7 @@ import path from 'path'
 
 declare global {
 	interface String {
+		isValidPath(): boolean;
 		isRootPath(): boolean;
 		isFullPath(): boolean;
 		resolvePath(...paths: string[]): string;
@@ -14,22 +15,34 @@ declare global {
 	}
 }
 
+const validRoot = /^([a-zA-Z]:[/\\])|[/\\]$/
+const validLeg = /^[^/\\:*?"<>|]+$/
+const sep = /[/\\]/g
+
 String.prototype.isRootPath = function(): boolean {
 	const p = this.valueOf()
 	if (p.length < 1)
 		return false
-	return p == '/'
-		|| p == '\\'
-		|| /^[a-zA-Z]:(?:[/]|\\)?$/.test(p)
+	return validRoot.test(p)
+}
+
+String.prototype.isValidPath = function(): boolean {
+	const p = this.valueOf()
+	if (p.length < 1)
+		return false
+	if (validRoot.test(p))
+		return true
+	if (p.isFullPath())
+		return validRoot.test(p.pathRoot())
+			&& p.split(sep).every(n => validLeg.test(n))
+	return p.split(sep).every(n => validLeg.test(n))
 }
 
 String.prototype.isFullPath = function(): boolean {
 	const p = this.valueOf()
 	if (p.length < 1)
 		return false
-	return p.startsWith('/')
-		|| p.startsWith('\\')
-		|| /^[a-zA-Z]:(?:[/]|\\)/.test(p)
+	return validRoot.test(p)
 }
 
 String.prototype.resolvePath = function(...paths: string[]): string {
@@ -42,6 +55,10 @@ String.prototype.appendPath = function(...paths: string[]): string {
 
 String.prototype.parentFolder = function(): string {
 	return path.dirname(this.valueOf())
+}
+
+String.prototype.pathRoot = function(): string {
+	return path.parse(this.valueOf()).root
 }
 
 String.prototype.pathExtension = function(withDot = true): string {
