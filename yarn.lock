@@ -1018,6 +1018,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prompt-sync@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@types/prompt-sync@npm:4.2.0"
+  checksum: fda361bfc358e1f59e2328e62f9c15c9eb650a3707475711524bb8c6bc07175098d6ba76b21dca996d0d45a7a4f388de452debf84bf94cf9f214f733ce040082
+  languageName: node
+  linkType: hard
+
 "@types/semver@npm:^7.3.12":
   version: 7.3.13
   resolution: "@types/semver@npm:7.3.13"
@@ -1249,6 +1256,13 @@ __metadata:
   dependencies:
     type-fest: ^0.21.3
   checksum: 93111c42189c0a6bed9cdb4d7f2829548e943827ee8479c74d6e0b22ee127b2a21d3f8b5ca57723b8ef78ce011fbfc2784350eb2bde3ccfccf2f575fa8489815
+  languageName: node
+  linkType: hard
+
+"ansi-regex@npm:^4.1.0":
+  version: 4.1.1
+  resolution: "ansi-regex@npm:4.1.1"
+  checksum: b1a6ee44cb6ecdabaa770b2ed500542714d4395d71c7e5c25baa631f680fb2ad322eb9ba697548d498a6fd366949fc8b5bfcf48d49a32803611f648005b01888
   languageName: node
   linkType: hard
 
@@ -3754,6 +3768,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prompt-sync@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "prompt-sync@npm:4.2.0"
+  dependencies:
+    strip-ansi: ^5.0.0
+  checksum: b14dfb7d2520f384324b49a64c033e92cf2889e34a148037d66b0b89e43f530a93344aebf57c4abe3ae4e351080e22388f7141ea0fbc56b1b9a7f152d5d4a423
+  languageName: node
+  linkType: hard
+
 "prompts@npm:^2.0.1":
   version: 2.4.2
   resolution: "prompts@npm:2.4.2"
@@ -4085,6 +4108,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"strip-ansi@npm:^5.0.0":
+  version: 5.2.0
+  resolution: "strip-ansi@npm:5.2.0"
+  dependencies:
+    ansi-regex: ^4.1.0
+  checksum: bdb5f76ade97062bd88e7723aa019adbfacdcba42223b19ccb528ffb9fb0b89a5be442c663c4a3fb25268eaa3f6ea19c7c3fbae830bd1562d55adccae1fcec46
+  languageName: node
+  linkType: hard
+
 "strip-ansi@npm:^6.0.0, strip-ansi@npm:^6.0.1":
   version: 6.0.1
   resolution: "strip-ansi@npm:6.0.1"
@@ -4210,10 +4242,12 @@ __metadata:
   dependencies:
     "@types/jest": ^29.4.0
     "@types/node": ^18.15.0
+    "@types/prompt-sync": ^4.2.0
     "@typescript-eslint/eslint-plugin": latest
     "@typescript-eslint/parser": latest
     eslint: ^8.36.0
     jest: ^29.5.0
+    prompt-sync: ^4.2.0
     ts-jest: ^29.0.5
     ts-node: ^10.9.1
     typescript: ^4.9.5
