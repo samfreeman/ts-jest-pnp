@@ -79,6 +79,7 @@ echo .yarn/unplugged>> .gitignore
 echo .yarn/build-state.yml>> .gitignore
 echo .yarn/install-state.gz>> .gitignore
 echo .pnp.*>> .gitignore
+echo *.tsbuildinfo
 echo build>> .gitignore
 echo tests/output>> .gitignore
 ```
@@ -161,6 +162,7 @@ echo tests/output>> .gitignore
 ```cmd
 echo .yarn> .eslintignore
 echo .pnp.*>> .eslintignore
+echo *.tsbuildinfo>> .eslintignore
 echo build>> .eslintignore
 echo tests>> .eslintignore
 ```
