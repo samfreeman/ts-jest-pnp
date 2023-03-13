@@ -34,6 +34,7 @@ declare global {
 		appendFile(content: string): void;
 		readFolder(recursive?: boolean): string[];
 		createFolder(f?: Folder): string;
+		useFolder<T>(fn: () => T): T;
 	}
 }
 
@@ -48,11 +49,13 @@ String.prototype.pathExists = function(): boolean {
 }
 
 String.prototype.isFile = function(): boolean {
-	return fs.statSync(this.valueOf()).isFile()
+	const p = this.valueOf()
+	return p.pathExists() && fs.statSync(p).isFile()
 }
 
 String.prototype.isFolder = function(): boolean {
-	return fs.statSync(this.valueOf()).isDirectory()
+	const p = this.valueOf()
+	return p.pathExists() && fs.statSync(p).isDirectory()
 }
 
 String.prototype.deletePath = function(): string {
@@ -105,4 +108,15 @@ String.prototype.createFolder = function(f?: Folder): string {
 			p.appendPath(name).createFolder(item)
 	}
 	return p
+}
+
+String.prototype.useFolder = function<T>(fn: () => T): T {
+	const p = this.valueOf()
+	const cwd = process.cwd()
+	process.chdir(p)
+	try {
+		return fn()
+	} finally {
+		process.chdir(cwd)
+	}
 }
