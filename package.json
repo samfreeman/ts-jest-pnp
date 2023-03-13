@@ -12,6 +12,11 @@
     "pnp"
   ],
   "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "bin": {
+    "new-ts-prj": "build/index.js"
+  },
   "scripts": {
     "test": "jest --no-color 2>tests/output/logs/tests.log",
     "coverage": "\"tests/output/coverage/lcov-report/index.html\"",
