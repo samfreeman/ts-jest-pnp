@@ -9,7 +9,7 @@
     "jest",
     "yarn",
     "plug'n'play",
-    "pnp" 
+    "pnp"
   ],
   "license": "MIT",
   "scripts": {
@@ -19,9 +19,13 @@
     "build": "tsc --build --verbose",
     "re-build": "yarn clean && yarn build"
   },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/node": "^18.15.0",
+    "@types/prompt-sync": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "eslint": "^8.36.0",
