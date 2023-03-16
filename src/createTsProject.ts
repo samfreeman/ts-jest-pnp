@@ -3,6 +3,7 @@ import './lib/path'
 import './lib/file'
 import { file, folder } from './lib/file'
 import { NewTsProject } from './NewTsProject'
+import { toTs } from './lib/JsonObject'
 
 
 export const createTsProject = (config = NewTsProject.DefaultConfig) => {
@@ -25,19 +26,18 @@ export const createTsProject = (config = NewTsProject.DefaultConfig) => {
 	const packageJson = prj.packageJson()
 	const tsConfig = prj.tsConfig()
 	const jestConfig = prj.jestConfig()
-	const jestKeys = Object.keys(jestConfig)
 	const jestTsConfig = prj.jestTsConfig()
 
 	const jsonTab = 2
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const rules = prj.esLintConfig.rules as any
-	const tsTab: number | string =
+	const tsTab =
 		rules
 			&& rules.indent
 			&& rules.indent.length > 1
 			&& rules.indent[1] != 'tab'
-			? 4
+			? '    '
 			: '\t'
 
 	return parentFolder.appendPath(name)
@@ -61,12 +61,7 @@ export const createTsProject = (config = NewTsProject.DefaultConfig) => {
 			'jest.config.ts': file([
 				'',
 				'export default {',
-				...jestKeys.map((key, i) => {
-					const result = `${tsTab}${key}: ${JSON.stringify(jestConfig[key])}`
-					return i == jestKeys.length - 1
-						? result
-						: `${result},`
-				}),
+				...toTs(jestConfig, tsTab),
 				'}'
 			]),
 
