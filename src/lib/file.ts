@@ -14,11 +14,13 @@ export const file = (text: string | string[] | JsonObject | undefined, tab: numb
 		return ''
 	if (typeof text == 'string'){
 		const indent = typeof tab == 'number' ? ' '.repeat(tab) : tab
-		return text.replace(/\r?\n/g, os.EOL).replace(/\t/g, indent)
+		return text
+			.replace(/\r?\n/g, os.EOL)
+			.replace(/\t/g, indent)
 	}
 	if (Array.isArray(text))
-		return file(text.join(os.EOL))
-	return JSON.stringify(text, null, tab)
+		return file(text.join('\n') + '\n')
+	return file(JSON.stringify(text, null, tab) + '\n')
 }
 
 declare global {
