@@ -10,20 +10,20 @@ const checkPath = (name: string, path: string) => {
 		throw new Error(`${name} is required`)
 	if (!path.isValidPath())
 		throw new Error(`${name} '${path}' contains invalid characters`)
-	if (path != path.toLowerCase())
-		throw new Error(`${name} '${path}' should be lowercase`)
 	return path
 }
 
 const checkPathName = (name: string, path: string) => {
 	checkPath(name, path)
+	if (path != path.toLowerCase())
+		throw new Error(`${name} '${path}' should be lowercase`)
 	if (/\/|\\/.test(path))
 		throw new Error(`${name} '${path}' should not contain path separators`)
 	return path
 }
 
 const checkPathDoesNotExist = (name: string, path: string) => {
-	checkPath(name, path)
+	checkPathName(name, path)
 	if (path.resolvePath().pathExists())
 		throw new Error(`${name} '${path}' already exists`)
 	return path
@@ -40,16 +40,9 @@ const checkPathExists = (name: string, path: string) => {
 export const getTsProjectConfig = (): TsProjectConfig => {
 	const def = NewTsProject.DefaultConfig
 
-	console.log()
-	console.log('Press Ctrl+C at any time to exit')
-	console.log()
-
 	const parentFolder = 'Parent folder'.prompt(def.parentFolder, checkPathExists)
 	return parentFolder.useFolder(() => {
-		const name = 'Project name'.prompt((name, path) => {
-			checkPathDoesNotExist('Project path', path)
-			return checkPathName(name, path)
-		})
+		const name = 'Project name'.prompt(checkPathDoesNotExist)
 		const version = 'Version'.prompt(def.version)
 		const description = 'Description'.prompt(def.description)
 		const author = 'Author name'.prompt(def.author)
