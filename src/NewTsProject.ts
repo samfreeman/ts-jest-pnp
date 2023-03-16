@@ -158,6 +158,7 @@ export class NewTsProject {
 
 	readme = [
 		`# ${this.config.name}`,
+		'',
 		this.config.description
 	]
 }
